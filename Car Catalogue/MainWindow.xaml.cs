@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -64,47 +65,29 @@ namespace Car_Catalogue
             rbDiesel.IsChecked = false;
             rbElectric.IsChecked = false;
         }
-        private void btnAddCar(object sender, RoutedEventArgs e)
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            int maxSpeed;
-            if (int.TryParse((txtMaxSpeed.Text), out maxSpeed) && gearType != null && engineType != null)
+            Regex regex = new Regex("[^0-9]+");
+            //One or more occurrences of a character range that matches all the characters that are NOT NUMBERS.    
+            e.Handled = regex.IsMatch(e.Text);
+            //Marks e.Handled TRUE if e.Text contains characters that are NOT NUMBERS.
+            //As a result, default handlers on instance listeners will not be invoked.
+        }
+
+        private void GearButtonsChecked(object sender, RoutedEventArgs e)
+        {
+            if (sender is RadioButton button && button.Content != null)
             {
-                cars.Add(new Car(txtMake.Text, txtModel.Text, txtColor.Text, maxSpeed, gearType, engineType));
-                ClearTextBoxes();
-                SetRadioButtonsOff();
-                ViewCars(cars.Count - 1);
-                MessageBox.Show("Car added.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else if (gearType == null || engineType == null)
-            {
-                ClearTextBoxes();
-                SetRadioButtonsOff();
-                MessageBox.Show("Please, select Gear Type and Engine Type.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                ClearTextBoxes();
-                SetRadioButtonsOff();
-                MessageBox.Show("Invalid Max Speed. Please, enter an integer.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                gearType = button.Content.ToString();
             }
         }
 
-        private void btnViewCar(object sender, RoutedEventArgs e)
+        private void EngineButtonsChecked(object sender, RoutedEventArgs e)
         {
-            int carsIndex;
-            if (!int.TryParse((txtCarsIndex.Text), out carsIndex))
+            if (sender is RadioButton button && button.Content != null)
             {
-                MessageBox.Show("Invalid index number. Please, enter an integer.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            carsIndex--;
-            if (carsIndex < cars.Count)
-            {
-                ViewCars(carsIndex);    
-            }
-            else
-            {
-                MessageBox.Show($"Index too high. The current Car Count is {cars.Count}.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                engineType = button.Content.ToString();
             }
         }
 
@@ -139,24 +122,42 @@ namespace Car_Catalogue
             }
         }
 
-        private void GearButtonsChecked(object sender, RoutedEventArgs e)
+        private void btnAddCar(object sender, RoutedEventArgs e)
         {
-            if (sender is RadioButton button && button.Content != null)
+            if (txtMake.Text == "" || txtModel.Text == "" || txtColor.Text == "" || txtMaxSpeed.Text == "")
             {
-                gearType = button.Content.ToString();
+                MessageBox.Show("Please fill in all Text Boxes.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            else if (gearType == null || engineType == null)
+            {
+                MessageBox.Show("Please, select Gear Type and Engine Type.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                cars.Add(new Car(txtMake.Text, txtModel.Text, txtColor.Text, int.Parse(txtMaxSpeed.Text), gearType, engineType));
+                ClearTextBoxes();
+                SetRadioButtonsOff();
+                ViewCars(cars.Count - 1);
+                MessageBox.Show("Car added.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            
         }
 
-        private void EngineButtonsChecked(object sender, RoutedEventArgs e)
+        private void btnViewCar(object sender, RoutedEventArgs e)
         {
-            if (sender is RadioButton button && button.Content != null)
+            int carsIndex = int.Parse(txtCarsIndex.Text) - 1;
+            if (carsIndex < cars.Count)
             {
-                engineType = button.Content.ToString();
+                ViewCars(carsIndex);    
+            }
+            else
+            {
+                MessageBox.Show($"Index too high. The current Car Count is {cars.Count}.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void btnClearAll(object sender, RoutedEventArgs e) => Clear_All();
-       
+        
         private void btnSaveAll(object sender, RoutedEventArgs e)
         {
             string filePath = txtFilePath.Text;
