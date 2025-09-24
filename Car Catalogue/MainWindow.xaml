@@ -1,0 +1,79 @@
+﻿<Window x:Class="Car_Catalogue.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Car_Catalogue"
+        mc:Ignorable="d"
+        Title="Car Catalogue" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="90"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Make:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Model:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Color:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Max Speed:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+
+        <TextBox Grid.Row="0" Grid.Column="1" TabIndex="0" x:Name="txtMake" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="120" Height="26" FontSize="12"/>
+        <TextBox Grid.Row="1" Grid.Column="1" TabIndex="1" x:Name="txtModel" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="120" Height="26" FontSize="12"/>
+        <TextBox Grid.Row="2" Grid.Column="1" TabIndex="2" x:Name="txtColor" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="120" Height="26" FontSize="12"/>
+        <TextBox Grid.Row="3" Grid.Column="1" TabIndex="3" x:Name="txtMaxSpeed" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Width="120" Height="26" FontSize="12"/>
+
+        <Button Grid.Row="4" Grid.Column="1" TabIndex="4" x:Name="AddCar" Click="btnAddCar" Content="Add Car" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="40" Width="120" FontSize="12"/>
+        <Button Grid.Row="5" Grid.Column="1" TabIndex="5" x:Name="ViewCar" Click="btnViewCar" Content="View Car" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="40" Width="120" FontSize="12"/>
+        <Button Grid.Row="6" Grid.Column="1" TabIndex="6" x:Name="ClearAll" Click="btnClearAll" Content="Clear All" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="40" Width="120" FontSize="12"/>
+        <Button Grid.Row="7" Grid.Column="1" TabIndex="7" x:Name="SaveAll" Click="btnSaveAll" Content="Save All" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="40" Width="120" FontSize="12"/>
+        <Button Grid.Row="8" Grid.Column="1" TabIndex="8" x:Name="ReadFile" Click="btnReadFile" Content="Read File" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="40" Width="120" FontSize="12"/>
+
+        <TextBox Grid.Row="5" Grid.Column="2" TabIndex="9" x:Name="txtCarsIndex"  HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,6" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Width="25" Height="26" FontSize="12"/>
+        <Label Grid.Row="7" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="3" Content="File Path:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="5,43,0,0" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="26" Width="120" FontSize="12"/>
+        <TextBox Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" TabIndex="10" x:Name="txtFilePath"  HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="5,0,0,6" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Bottom" Width="120" Height="26" FontSize="12"/>
+
+        <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Content="Make:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+        <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Content="Model:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+        <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Content="Color:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+        <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Content="Max Speed:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+        <Label Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Content="Car Count:" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="30" Width="75" FontSize="12"/>
+
+        <Label Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" x:Name="lblMake" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="26" Width="120" FontSize="12"/>
+        <Label Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" x:Name="lblModel" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="26" Width="120" FontSize="12"/>
+        <Label Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" x:Name="lblColor" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="26" Width="120" FontSize="12"/>
+        <Label Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="2" x:Name="lblMaxSpeed" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="26" Width="120" FontSize="12"/>
+        <Label Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" x:Name="lblCarCount" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="26" Width="120" FontSize="12"/>
+
+        <Label Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Content="Gear Type:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Top" VerticalAlignment="Top" Height="30" Width="80" FontSize="12"/>
+
+        <RadioButton Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3" TabIndex="11" x:Name="rbManual" Content="Manual" GroupName="GearType" Checked="GearButtonsChecked"  HorizontalAlignment="Left" Margin="5,30,0,0" VerticalAlignment="Top" Height="15" Width="80" FontSize="12"/>
+        <RadioButton Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3" TabIndex="12" x:Name="rbAutomatic" Content="Automatic" GroupName="GearType" Checked="GearButtonsChecked" HorizontalAlignment="Left" Margin="5,60,0,0" VerticalAlignment="Top" Height="15" Width="80" FontSize="12"/>
+        <RadioButton Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="3" TabIndex="13" x:Name="rbRobotic" Content="Robotic" GroupName="GearType" Checked="GearButtonsChecked" HorizontalAlignment="Left" Margin="5,90,0,0" VerticalAlignment="Top" Height="15" Width="80" FontSize="12"/>
+
+        <Label Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" Content="Engine Type:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalContentAlignment="Top" VerticalAlignment="Top" Height="30" Width="80" FontSize="12"/>
+
+        <RadioButton Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="3" TabIndex="14" x:Name="rbGasoline" Content="Gasoline" GroupName="EngineType" Checked="EngineButtonsChecked" HorizontalAlignment="Left" Margin="5,30,0,0" VerticalAlignment="Top" Height="15" Width="80" FontSize="12"/>
+        <RadioButton Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="3" TabIndex="15" x:Name="rbDiesel" Content="Diesel" GroupName="EngineType" Checked="EngineButtonsChecked" HorizontalAlignment="Left" Margin="5,60,0,0" VerticalAlignment="Top" Height="15" Width="80" FontSize="12"/>
+        <RadioButton Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="3" TabIndex="16" x:Name="rbElectric" Content="Electric" GroupName="EngineType" Checked="EngineButtonsChecked" HorizontalAlignment="Left" Margin="5,90,0,0" VerticalAlignment="Top" Height="15" Width="80" FontSize="12"/>
+        
+
+
+    </Grid>
+</Window>
